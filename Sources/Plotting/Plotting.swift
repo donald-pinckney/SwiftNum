@@ -5,8 +5,8 @@
 //  Created by Donald Pinckney on 12/27/16.
 //
 //
-import Foundation
 
+import Foundation
 
 
 func plot(_ xs: [Double], toFile: String? = nil) {
