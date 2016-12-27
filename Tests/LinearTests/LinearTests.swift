@@ -177,6 +177,18 @@ class LinearTests: XCTestCase {
         XCTAssertEqual(magic2, newMagic)
         magic2 = magic
     }
+    
+    func testMatrixInverse() {
+        let magic3 = Matrix([
+            [8, 1, 6],
+            [3, 5, 7],
+            [4, 9, 2]
+        ])
+        
+        XCTAssertEqualWithAccuracy(magic3 * magic3.inverse()!, Matrix.I(3), accuracy: 0.00001)
+        XCTAssertEqualWithAccuracy(magic3.inverse()! * magic3, Matrix.I(3), accuracy: 0.00001)
+
+    }
 
     static var allTests : [(String, (LinearTests) -> () throws -> Void)] {
         return [
@@ -188,6 +200,7 @@ class LinearTests: XCTestCase {
             ("testZeroMatrix", testZeroMatrix),
             ("testIdentityMatrix", testIdentityMatrix),
             ("testMatrixSubscripts", testMatrixSubscripts),
+            ("testMatrixInverse", testMatrixInverse),
         ]
     }
 }
