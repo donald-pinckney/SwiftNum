@@ -8,7 +8,6 @@
 
 import Accelerate
 
-// Matrix multiplication
 public extension Matrix {
     static func *(lhs: Matrix, rhs: Matrix) -> Matrix {
         precondition(lhs.width == rhs.height)
