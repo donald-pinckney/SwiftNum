@@ -38,4 +38,8 @@ public extension Matrix {
         var rhs = -rhs
         vDSP_vsaddD(lhs.data, 1, &rhs, &lhs.data, 1, vDSP_Length(lhs.data.count))
     }
+    
+    static prefix func -(rhs: Matrix) -> Matrix {
+        return -1 * rhs
+    }
 }
