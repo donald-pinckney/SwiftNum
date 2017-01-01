@@ -10,10 +10,10 @@ import Accelerate
 
 public extension Matrix {
     static func /(lhs: Matrix, rhs: Matrix) -> Matrix {
-        return lhs * rhs.inverse()!
+        return lhs * rhs.inverse!
     }
     static func /=(lhs: inout Matrix, rhs: Matrix) {
-        lhs = lhs * rhs.inverse()!
+        lhs = lhs * rhs.inverse!
     }
     
     
@@ -24,7 +24,7 @@ public extension Matrix {
         return res
     }
     static func /(lhs: Double, rhs: Matrix) -> Matrix {
-        return lhs * rhs.inverse()!
+        return lhs * rhs.inverse!
     }
     static func /=(lhs: inout Matrix, rhs: Double) {
         var rhs = 1 / rhs
