@@ -9,7 +9,7 @@
 import Accelerate
 
 public extension Matrix {
-    func inverse() -> Matrix? {
+    var inverse: Matrix? {
         if width != height {
             return nil
         }
