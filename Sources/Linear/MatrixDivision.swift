@@ -31,3 +31,26 @@ public extension Matrix {
         vDSP_vsmulD(lhs.data, 1, &rhs, &lhs.data, 1, vDSP_Length(lhs.data.count))
     }
 }
+
+infix operator ./: MultiplicationPrecedence
+public extension Matrix {
+    static func ./(lhs: Matrix, rhs: Matrix) -> Matrix {
+        precondition(lhs.width == rhs.width)
+        precondition(lhs.height == rhs.height)
+        
+        var res = lhs
+        
+        vDSP_vdivD(rhs.data, 1, lhs.data, 1, &res.data, 1, vDSP_Length(lhs.data.count))
+        
+        return res
+    }
+    
+    static func ./(lhs: Double, rhs: Matrix) -> Matrix {
+        var lhs = lhs
+        var res = rhs
+        
+        vDSP_svdivD(&lhs, rhs.data, 1, &res.data, 1, vDSP_Length(rhs.data.count))
+        
+        return res
+    }
+}
