@@ -44,8 +44,8 @@ public extension Matrix {
         precondition(lhs.width == rhs.width)
         precondition(lhs.height == rhs.height)
         
-        var res = rhs.data
-        vDSP_vmulD(lhs.data, 1, rhs.data, 1, &res, 1, vDSP_Length(lhs.data.count))
+        var res = rhs
+        vDSP_vmulD(lhs.data, 1, rhs.data, 1, &res.data, 1, vDSP_Length(lhs.data.count))
         return res
     }
 }
