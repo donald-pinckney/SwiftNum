@@ -18,3 +18,4 @@ public func extendToMatrix(_ f: @escaping (Double) -> Double) -> ((Matrix) -> Ma
 
 public let exp = extendToMatrix(Foundation.exp)
 public let tanh = extendToMatrix(Foundation.tanh)
+public let log = extendToMatrix(Foundation.log)
