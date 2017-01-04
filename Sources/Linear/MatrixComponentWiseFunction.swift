@@ -17,5 +17,10 @@ public func extendToMatrix(_ f: @escaping (Double) -> Double) -> ((Matrix) -> Ma
 }
 
 public let exp = extendToMatrix(Foundation.exp)
-public let tanh = extendToMatrix(Foundation.tanh)
 public let log = extendToMatrix(Foundation.log)
+public let sin = extendToMatrix(Foundation.sin)
+public let cos = extendToMatrix(Foundation.cos)
+public let tan = extendToMatrix(Foundation.tan)
+public let sinh = extendToMatrix(Foundation.sinh)
+public let cosh = extendToMatrix(Foundation.cosh)
+public let tanh = extendToMatrix(Foundation.tanh)
