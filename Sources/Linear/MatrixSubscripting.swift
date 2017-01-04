@@ -68,4 +68,38 @@ public extension Matrix {
             self[Range(rows), Range(columns)] = m
         }
     }
+    
+    public subscript(rows: ClosedRange<Int>, column: Int) -> Matrix {
+        get {
+            return self[Range(rows), column..<(column + 1)]
+        }
+        set(m) {
+            self[Range(rows), column..<(column + 1)] = m
+        }
+    }
+    public subscript(rows: Range<Int>, column: Int) -> Matrix {
+        get {
+            return self[rows, column..<(column + 1)]
+        }
+        set(m) {
+            self[rows, column..<(column + 1)] = m
+        }
+    }
+    
+    public subscript(row: Int, columns: ClosedRange<Int>) -> Matrix {
+        get {
+            return self[row..<(row + 1), Range(columns)]
+        }
+        set(m) {
+            self[row..<(row + 1), Range(columns)] = m
+        }
+    }
+    public subscript(row: Int, columns: Range<Int>) -> Matrix {
+        get {
+            return self[row..<(row + 1), columns]
+        }
+        set(m) {
+            self[row..<(row + 1), columns] = m
+        }
+    }
 }
