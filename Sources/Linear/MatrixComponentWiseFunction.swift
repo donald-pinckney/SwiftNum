@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Accelerate
 
 public func extendToMatrix(_ f: @escaping (Double) -> Double) -> ((Matrix) -> Matrix) {
     return { mat in
@@ -24,3 +25,9 @@ public let tan = extendToMatrix(Foundation.tan)
 public let sinh = extendToMatrix(Foundation.sinh)
 public let cosh = extendToMatrix(Foundation.cosh)
 public let tanh = extendToMatrix(Foundation.tanh)
+
+public func abs(_ X: Matrix) -> Matrix {
+    var res = X
+    vDSP_vabsD(X.data, 1, &res.data, 1, vDSP_Length(X.data.count))
+    return res
+}
