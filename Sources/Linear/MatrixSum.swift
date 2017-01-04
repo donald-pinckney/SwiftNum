@@ -8,7 +8,7 @@
 
 import Accelerate
 
-extension Matrix {
+public extension Matrix {
     // Computes a vector sum of the columns of the matrix.
     func sumColumns() -> Matrix {
         var sum = self[0..<height, 0]
