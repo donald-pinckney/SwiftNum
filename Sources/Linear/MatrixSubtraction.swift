@@ -42,4 +42,8 @@ public extension Matrix {
     static prefix func -(rhs: Matrix) -> Matrix {
         return -1 * rhs
     }
+    
+    static func -(lhs: Double, rhs: Matrix) -> Matrix {
+        return 1 + (-rhs)
+    }
 }
