@@ -184,11 +184,11 @@ class LinearTests: XCTestCase {
             [3, 5, 7],
             [4, 9, 2]
         ])
+                
+        XCTAssertEqualWithAccuracy(magic3 * magic3.inverse!, Matrix.I(3), accuracy: 0.00001)
+        XCTAssertEqualWithAccuracy(magic3.inverse! * magic3, Matrix.I(3), accuracy: 0.00001)
         
-        XCTAssertEqualWithAccuracy(magic3 * magic3.inverse()!, Matrix.I(3), accuracy: 0.00001)
-        XCTAssertEqualWithAccuracy(magic3.inverse()! * magic3, Matrix.I(3), accuracy: 0.00001)
-        
-        XCTAssertEqual(Matrix.zeros(3, 3).inverse(), nil)
+        XCTAssertEqual(Matrix.zeros(3, 3).inverse, nil)
     }
 
     static var allTests : [(String, (LinearTests) -> () throws -> Void)] {
