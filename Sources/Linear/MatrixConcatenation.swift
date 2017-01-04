@@ -40,7 +40,11 @@ public extension Matrix {
                 let itemWidth: Int
                 if let m = i as? Matrix {
                     itemWidth = m.width
-                    resData[base..<(base + itemWidth)] = m.data[r*m.width..<((r + 1)*m.width)]
+                    if height == 1 {
+                        resData[base..<(base + itemWidth)] = m.data[0..<m.width]
+                    } else {
+                        resData[base..<(base + itemWidth)] = m.data[r*m.width..<((r + 1)*m.width)]
+                    }
                 } else {
                     let d = i as! Double
                     itemWidth = 1
@@ -77,8 +81,15 @@ public extension Matrix {
         for i in items {
             let len: Int
             if let m = i as? Matrix {
-                len = m.width * m.height
-                resData[idx..<(idx+len)] = m.data[0..<m.data.count]
+                if m.width == 1 {
+                    len = width * m.height
+                    for r in 0..<m.height {
+                        resData[(idx + r*width)..<(idx + (r+1)*width)] = [Double](repeating: m.data[r], count: width)[0..<width]
+                    }
+                } else {
+                    len = m.width * m.height
+                    resData[idx..<(idx+len)] = m.data[0..<m.data.count]
+                }
             } else {
                 let d = i as! Double
                 len = width
