@@ -102,4 +102,34 @@ public extension Matrix {
             self[row..<(row + 1), columns] = m
         }
     }
+    
+    // Only valid for row or column matrices
+    public subscript(i: Int) -> Double {
+        get {
+            precondition(width == 1 || height == 1)
+            return self.data[i]
+        }
+        set(m) {
+            precondition(width == 1 || height == 1)
+            self.data[i] = m
+        }
+    }
+    public subscript(i: Range<Int>) -> Matrix {
+        get {
+            precondition(width == 1 || height == 1)
+            if width == 1 {
+                return self[i, 1]
+            } else {
+                return self[1, i]
+            }
+        }
+        set(m) {
+            precondition(width == 1 || height == 1)
+            if width == 1 {
+                self[i, 1] = m
+            } else {
+                self[1, i] = m
+            }
+        }
+    }
 }
