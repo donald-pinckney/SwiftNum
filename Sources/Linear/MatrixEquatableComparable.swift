@@ -24,3 +24,33 @@ extension Matrix: Comparable {
         return result
     }
 }
+
+public extension Matrix {
+    static func <(lhs: Matrix, rhs: Double) -> Bool {
+        return lhs < Matrix.fill(lhs.height, lhs.width, value: rhs)
+    }
+    static func <(lhs: Double, rhs: Matrix) -> Bool {
+        return Matrix.fill(rhs.height, rhs.width, value: lhs) < rhs
+    }
+    
+    static func <=(lhs: Matrix, rhs: Double) -> Bool {
+        return lhs <= Matrix.fill(lhs.height, lhs.width, value: rhs)
+    }
+    static func <=(lhs: Double, rhs: Matrix) -> Bool {
+        return Matrix.fill(rhs.height, rhs.width, value: lhs) <= rhs
+    }
+    
+    static func >(lhs: Matrix, rhs: Double) -> Bool {
+        return lhs > Matrix.fill(lhs.height, lhs.width, value: rhs)
+    }
+    static func >(lhs: Double, rhs: Matrix) -> Bool {
+        return Matrix.fill(rhs.height, rhs.width, value: lhs) > rhs
+    }
+    
+    static func >=(lhs: Matrix, rhs: Double) -> Bool {
+        return lhs >= Matrix.fill(lhs.height, lhs.width, value: rhs)
+    }
+    static func >=(lhs: Double, rhs: Matrix) -> Bool {
+        return Matrix.fill(rhs.height, rhs.width, value: lhs) >= rhs
+    }
+}
