@@ -44,6 +44,6 @@ public extension Matrix {
     }
     
     static func -(lhs: Double, rhs: Matrix) -> Matrix {
-        return 1 + (-rhs)
+        return lhs + (-rhs)
     }
 }
