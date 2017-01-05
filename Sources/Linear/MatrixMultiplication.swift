@@ -39,6 +39,8 @@ public extension Matrix {
 }
 
 infix operator .*: MultiplicationPrecedence
+infix operator .*=: AssignmentPrecedence
+
 public extension Matrix {
     static func .*(lhs: Matrix, rhs: Matrix) -> Matrix {
         precondition(lhs.width == rhs.width)
@@ -47,5 +49,12 @@ public extension Matrix {
         var res = rhs
         vDSP_vmulD(lhs.data, 1, rhs.data, 1, &res.data, 1, vDSP_Length(lhs.data.count))
         return res
+    }
+    
+    static func .*=(lhs: inout Matrix, rhs: Matrix) {
+        precondition(lhs.width == rhs.width)
+        precondition(lhs.height == rhs.height)
+        
+        vDSP_vmulD(lhs.data, 1, rhs.data, 1, &lhs.data, 1, vDSP_Length(lhs.data.count))
     }
 }
