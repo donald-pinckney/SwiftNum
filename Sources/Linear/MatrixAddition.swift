@@ -15,7 +15,7 @@ public extension Matrix {
         
         var res = lhs
         
-        vDSP_vaddD(res.data, 1, rhs.data, 1, &res.data, 1, vDSP_Length(lhs.width * rhs.width))
+        vDSP_vaddD(lhs.data, 1, rhs.data, 1, &res.data, 1, vDSP_Length(lhs.width * lhs.height))
         
         return res
     }
@@ -24,7 +24,7 @@ public extension Matrix {
         precondition(lhs.height == rhs.height)
         
         
-        vDSP_vaddD(lhs.data, 1, rhs.data, 1, &lhs.data, 1, vDSP_Length(lhs.width * rhs.width))
+        vDSP_vaddD(lhs.data, 1, rhs.data, 1, &lhs.data, 1, vDSP_Length(lhs.width * lhs.height))
     }
     
     
