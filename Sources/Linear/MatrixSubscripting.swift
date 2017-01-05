@@ -118,17 +118,17 @@ public extension Matrix {
         get {
             precondition(width == 1 || height == 1)
             if width == 1 {
-                return self[i, 1]
+                return self[i, 0]
             } else {
-                return self[1, i]
+                return self[0, i]
             }
         }
         set(m) {
             precondition(width == 1 || height == 1)
             if width == 1 {
-                self[i, 1] = m
+                self[i, 0] = m
             } else {
-                self[1, i] = m
+                self[0, i] = m
             }
         }
     }
