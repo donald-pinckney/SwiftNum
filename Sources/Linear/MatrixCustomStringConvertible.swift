@@ -10,6 +10,15 @@ import Foundation
 
 extension Matrix: CustomStringConvertible {
     public var description: String {
+        var maxWidth = 0
+        for r in 0..<height {
+            for c in 0..<width {
+                let num = String(format: "%.4g", self[r, c])
+                maxWidth = max(maxWidth, num.characters.count)
+            }
+        }
+        
+        
         var final = "\(height) x \(width) matrix:\n"
         for r in 0..<height {
             final += "    "
@@ -17,13 +26,12 @@ extension Matrix: CustomStringConvertible {
                 let num = String(format: "%.4g", self[r, c])
                 final += num
                 if c != width - 1 {
-                    final += repeatElement(" ", count: 10 - num.characters.count).reduce("", +)
+                    final += repeatElement(" ", count: maxWidth - num.characters.count + 2).reduce("", +)
                 }
             }
             
-            if r != height - 1 {
-                final += "\n"
-            }
+            final += "\n"
+            
         }
         return final
     }
