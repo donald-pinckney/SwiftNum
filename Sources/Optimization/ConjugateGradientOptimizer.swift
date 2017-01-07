@@ -56,7 +56,7 @@ public struct ConjugateGradientOptimizer {
     let length: Int
     let red: Double
     
-    public init(learningRate: Double, precision: Double, maxIterations: Int = 100, expectedFirstReduction: Double = 1.0) {
+    public init(maxIterations: Int = 100, expectedFirstReduction: Double = 1.0) {
         length = maxIterations
         red = expectedFirstReduction
     }
@@ -112,7 +112,7 @@ public struct ConjugateGradientOptimizer {
                         z2 = (sqrt(B * B - A * d2 * z3 * z3) - B) / A // numerical error possible - ok!
                     }
                     
-                    if z2 == .nan || z2 == .infinity || z2 == -.infinity {
+                    if z2.isNaN || z2.isInfinite {
                         z2 = z3 / 2 // if we had a numerical problem then bisect
                     }
                     
@@ -139,7 +139,7 @@ public struct ConjugateGradientOptimizer {
                 let A = 6 * (f2 - f3) / z3 + 3 * (d2 + d3) // make cubic extrapolation
                 let B = 3 * (f3 - f2) - z3 * (d3 + 2 * d2)
                 var z2 = -d2 * z3 * z3 / (B + sqrt(B * B - A * d2 * z3 * z3)) // num. error possible - ok!
-                if z2 == .nan || z2 == .infinity || z2 == -.infinity || z2 < 0 { // num prob or wrong sign?
+                if z2.isNaN || z2.isInfinite || z2 < 0 { // num prob or wrong sign?
                     if limit < -0.5 { // if we have no upper limit
                         z2 = z1 * (ext - 1) // then extrapolate the maximum amount
                     } else {

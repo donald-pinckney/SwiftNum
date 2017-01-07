@@ -2,14 +2,13 @@
 //  XCTestMatrixHelpers.swift
 //  SwiftNum
 //
-//  Created by Donald Pinckney on 12/27/16.
+//  Created by Donald Pinckney on 1/7/17.
 //
 //
 
 import XCTest
-@testable import Linear
 
-func XCTAssertEqualWithAccuracy(_ X: Matrix, _ Y: Matrix, accuracy: Double, _ message: String = "") {
+public func XCTAssertEqualWithAccuracy(_ X: Matrix, _ Y: Matrix, accuracy: Double, _ message: String = "") {
     XCTAssertEqual(X.width, Y.width)
     XCTAssertEqual(X.height, Y.height)
     
@@ -19,4 +18,3 @@ func XCTAssertEqualWithAccuracy(_ X: Matrix, _ Y: Matrix, accuracy: Double, _ me
         }
     }
 }
-

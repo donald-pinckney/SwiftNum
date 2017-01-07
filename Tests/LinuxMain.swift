@@ -3,5 +3,6 @@ import XCTest
 
 XCTMain([
     testCase(LinearTests.allTests),
-    testCase(LinearPerformanceTests.allTeset)
+    testCase(LinearPerformanceTests.allTeset),
+    testCase(OptimizationTests.allTests)
 ])

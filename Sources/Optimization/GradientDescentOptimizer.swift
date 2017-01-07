@@ -34,7 +34,6 @@ public struct GradientDescentOptimizer {
         while outOfPrecision && iter < maxIters {
             P_old = P_new
             let (cost, deriv) = toOptimize.costFunction(P_old)
-            print("Iteration \(iter), cost \(cost)")
             costHistory.append(cost)
             
             P_new -= learningRate * deriv
