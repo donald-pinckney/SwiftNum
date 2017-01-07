@@ -9,37 +9,28 @@
 import Linear
 
 public protocol Optimizable {
-    mutating func costFunction(_ P: [Matrix]) -> (cost: Double, derivative: [Matrix])
-    func initialParameters() -> [Matrix]
+    mutating func costFunction(_ P: Matrix) -> (cost: Double, derivative: Matrix)
+    func initialParameters() -> Matrix
 }
 
 public struct OptimizableFunctionWrapper: Optimizable {
-    public func costFunction(_ P: [Matrix]) -> (cost: Double, derivative: [Matrix]) {
+    public func costFunction(_ P: Matrix) -> (cost: Double, derivative: Matrix) {
         return (cost: wrappedCostFunction(P), derivative: wrappedCostDerivative(P))
     }
     
-    public func initialParameters() -> [Matrix] {
+    public func initialParameters() -> Matrix {
         return initParams
     }
-
-    private let wrappedCostFunction: ([Matrix]) -> Double
-    private let wrappedCostDerivative: ([Matrix]) -> [Matrix]
-    private let initParams: [Matrix]
     
-    init(costFunction: @escaping ([Matrix]) -> Double, costDerivative: @escaping ([Matrix]) -> [Matrix], initialParameters: [Matrix]) {
-        wrappedCostFunction = costFunction
-        wrappedCostDerivative = costDerivative
-        initParams = initialParameters
-    }
-    init(costFunction: (f: ([Matrix]) -> Double, df: ([Matrix]) -> [Matrix]), initialParameters: [Matrix]) {
-        self.init(costFunction: costFunction.f, costDerivative: costFunction.df, initialParameters: initialParameters)
-    }
+    private let wrappedCostFunction: (Matrix) -> Double
+    private let wrappedCostDerivative: (Matrix) -> Matrix
+    private let initParams: Matrix
     
     
     init(costFunction: @escaping (Matrix) -> Double, costDerivative: @escaping (Matrix) -> Matrix, initialParameters: Matrix) {
-        self.init(costFunction: { mats in return costFunction(mats[0]) },
-                  costDerivative: { mats in return [costDerivative(mats[0])] },
-                  initialParameters: [initialParameters])
+        wrappedCostFunction = costFunction
+        wrappedCostDerivative = costDerivative
+        initParams = initialParameters
     }
     init(costFunction: (f: (Matrix) -> Double, df: (Matrix) -> Matrix), initialParameters: Matrix) {
         self.init(costFunction: costFunction.f, costDerivative: costFunction.df, initialParameters: initialParameters)

@@ -12,7 +12,11 @@ public extension Matrix {
     init(csv: String) {
         let rowLines = csv.components(separatedBy: .newlines)
         var width = -1
-        let rows = rowLines.map { rowStr -> [Double] in
+        let rows = rowLines.flatMap { rowStr -> [Double]? in
+            if rowStr == "" {
+                return nil
+            }
+            
             let nums = rowStr.components(separatedBy: ",").map { numStr in
                 Double(numStr.trimmingCharacters(in: .whitespaces))!
             }
