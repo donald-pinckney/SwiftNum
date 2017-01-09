@@ -1,6 +1,6 @@
 //
 //  Optimizer.swift
-//  AES-NN
+//  SwiftNum
 //
 //  Created by Donald Pinckney on 1/4/17.
 //
