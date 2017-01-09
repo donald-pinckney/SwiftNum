@@ -90,6 +90,81 @@ public extension Matrix {
         }
     }
     
+    public subscript(rows: Range<Int>, column: Int) -> Matrix {
+        get {
+            return self[rows, column..<(column + 1)]
+        }
+        set(m) {
+            self[rows, column..<(column + 1)] = m
+        }
+    }
+    
+    
+    public subscript(rows: ClosedRange<Int>, column: Int) -> Matrix {
+        get {
+            return self[Range(rows), column]
+        }
+        set(m) {
+            self[Range(rows), column] = m
+        }
+    }
+    
+    public subscript(rows: Range<Int>, columns: [Int]) -> Matrix {
+        get {
+            var cols: [Matrix] = []
+            for c in columns {
+                cols.append(self[rows, c])
+            }
+            return Matrix.horizontalConcatenate(cols)
+        }    }
+    
+    public subscript(rows: ClosedRange<Int>, columns: [Int]) -> Matrix {
+        get {
+            return self[Range(rows), columns]
+        }
+    }
+    
+    public subscript(row: Int, columns: [Int]) -> Matrix {
+        get {
+            return self[row..<(row + 1), columns]
+        }
+    }
+    
+    
+    public subscript(rows: [Int], columns: Range<Int>) -> Matrix {
+        get {
+            var rs: [Matrix] = []
+            for r in rows {
+                rs.append(self[r, columns])
+            }
+            return Matrix.verticalConcatenate(rs)
+        }
+    }
+    
+    public subscript(rows: [Int], columns: ClosedRange<Int>) -> Matrix {
+        get {
+            return self[rows, Range(columns)]
+        }
+    }
+    
+    public subscript(rows: [Int], column: Int) -> Matrix {
+        get {
+            return self[rows, column..<(column+1)]
+        }
+    }
+    
+    public subscript(rows: [Int], columns: [Int]) -> Matrix {
+        get {
+            var data: [Double] = []
+            for r in rows {
+                for c in columns {
+                    data.append(self[r, c])
+                }
+            }
+            return Matrix(rowMajorData: data, width: columns.count)
+        }
+    }
+    
     // Only valid for row or column matrices
     public subscript(i: Int) -> Double {
         get {
@@ -117,23 +192,6 @@ public extension Matrix {
     }
     
     
-    public subscript(rows: Range<Int>, column: Int) -> Matrix {
-        get {
-            return self[rows, column..<(column + 1)]
-        }
-        set(m) {
-            self[rows, column..<(column + 1)] = m
-        }
-    }
     
-    
-    public subscript(rows: ClosedRange<Int>, column: Int) -> Matrix {
-        get {
-            return self[Range(rows), column]
-        }
-        set(m) {
-            self[Range(rows), column] = m
-        }
-    }
     
 }
