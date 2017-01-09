@@ -6,6 +6,7 @@ let package = Package(
     	Target(name: "Linear", dependencies: []),
     	Target(name: "Plotting", dependencies: []),
     	Target(name: "SignalProcessing", dependencies: []),
-    	Target(name: "Optimization", dependencies: ["Linear"])
+    	Target(name: "Optimization", dependencies: ["Linear"]),
+        Target(name: "GeneralMath", dependencies: [])
     ]
 )
