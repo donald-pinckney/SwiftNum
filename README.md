@@ -1,5 +1,5 @@
 # SwiftNum
-SwiftNum is an in-progress numerical computing library in Swift. It uses Accelerate / BLAS, so it should be quite fast.
+*SwiftNum* is an in-progress numerical computing library in Swift. It uses Accelerate / BLAS, so it should be quite fast.
 
 Currently SwiftNum only support macOS, but Linux support shouldn't be too hard, and is planned.
 
