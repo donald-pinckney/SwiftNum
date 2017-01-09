@@ -19,4 +19,7 @@ Currently the requirements are:
 - *gnuplot* installed if you wish to plot, though **SwiftNum** will build without it.
 
 ## How to Use
-Just add it is a dependency to your `Package.swift` file!
+Just add it is a dependency to your `Package.swift` file:
+```swift
+.Package(url: "https://github.com/donald-pinckney/SwiftNum", Version(1, 9, 7))
+```
