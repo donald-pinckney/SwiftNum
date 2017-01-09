@@ -65,6 +65,6 @@ public extension CountableClosedRange {
     }
 }
 
-func randomPermutation(_ n: Int) -> [Int] {
+public func randomPermutation(_ n: Int) -> [Int] {
     return (0..<n).shuffled()
 }
