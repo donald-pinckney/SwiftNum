@@ -13,7 +13,7 @@ So far, **SwiftNum** has implemented:
 - [Plotting](https://github.com/donald-pinckney/SwiftNum/tree/master/Sources/Plotting): Just makes calls to *gnuplot*, but is very convenient from Swift.
 
 ## Requirements
-Current the requirements are:
+Currently the requirements are:
 - macOS
 - Swift 3.0.x
 - *gnuplot* installed if you wish to plot, though **SwiftNum** will build without it.
