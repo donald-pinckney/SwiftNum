@@ -55,10 +55,12 @@ import Foundation
 public struct ConjugateGradientOptimizer {
     let length: Int
     let red: Double
+    let debug: Bool
     
-    public init(maxIterations: Int = 100, expectedFirstReduction: Double = 1.0) {
+    public init(debug: Bool = true, maxIterations: Int = 100, expectedFirstReduction: Double = 1.0) {
         length = maxIterations
         red = expectedFirstReduction
+        self.debug = debug
     }
     
     public func optimize(_ toOptimize: Optimizable) -> (costHistory: [Double], parameters: Matrix) {
@@ -171,7 +173,9 @@ public struct ConjugateGradientOptimizer {
             if success { // if line search succeeded
                 f1 = f2
                 history.append(f1)
-                print("Iteration \(i) | Cost: \(f1)")
+                if debug {
+                    print("Iteration \(i) | Cost: \(f1)")
+                }
                 s = ((df2.T * df2)[0] - (df1.T * df2)[0]) / ((df1.T * df1)[0]) * s - df2 // Polak-Ribère direction
                 (df1, df2) = (df2, df1) // swap derivatives
                 d2 = (df1.T * s)[0]

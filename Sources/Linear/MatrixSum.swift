@@ -30,4 +30,10 @@ public extension Matrix {
         }
         return sum
     }
+    
+    func sumAll() -> Double {
+        var sum = 0.0
+        vDSP_sveD(data, 1, &sum, vDSP_Length(width * height))
+        return sum
+    }
 }

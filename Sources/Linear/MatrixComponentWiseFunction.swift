@@ -17,14 +17,53 @@ public func extendToMatrix(_ f: @escaping (Double) -> Double) -> ((Matrix) -> Ma
     }
 }
 
-public let exp = extendToMatrix(Foundation.exp)
-public let log = extendToMatrix(Foundation.log)
-public let sin = extendToMatrix(Foundation.sin)
-public let cos = extendToMatrix(Foundation.cos)
-public let tan = extendToMatrix(Foundation.tan)
-public let sinh = extendToMatrix(Foundation.sinh)
-public let cosh = extendToMatrix(Foundation.cosh)
-public let tanh = extendToMatrix(Foundation.tanh)
+public func exp(_ X: Matrix) -> Matrix {
+    var res = X
+    res.data = X.data.map(Foundation.exp)
+    return res
+}
+
+public func log(_ X: Matrix) -> Matrix {
+    var res = X
+    res.data = X.data.map(Foundation.log)
+    return res
+}
+
+public func sin(_ X: Matrix) -> Matrix {
+    var res = X
+    res.data = X.data.map(Foundation.sin)
+    return res
+}
+
+public func cos(_ X: Matrix) -> Matrix {
+    var res = X
+    res.data = X.data.map(Foundation.cos)
+    return res
+}
+
+public func tan(_ X: Matrix) -> Matrix {
+    var res = X
+    res.data = X.data.map(Foundation.tan)
+    return res
+}
+
+public func sinh(_ X: Matrix) -> Matrix {
+    var res = X
+    res.data = X.data.map(Foundation.sinh)
+    return res
+}
+
+public func cosh(_ X: Matrix) -> Matrix {
+    var res = X
+    res.data = X.data.map(Foundation.cosh)
+    return res
+}
+
+public func tanh(_ X: Matrix) -> Matrix {
+    var res = X
+    res.data = X.data.map(Foundation.tanh)
+    return res
+}
 
 public func abs(_ X: Matrix) -> Matrix {
     var res = X

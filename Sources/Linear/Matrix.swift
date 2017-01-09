@@ -10,7 +10,7 @@ import Accelerate
 
 public struct Matrix {
     
-    internal var data: [Double]
+    public var data: [Double] // Don't mess with this unless you know what you are doing
     public let width: Int
     public let height: Int
     

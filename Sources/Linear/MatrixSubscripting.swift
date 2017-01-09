@@ -26,7 +26,8 @@ public extension Matrix {
                 let base = (r - rows.lowerBound) * width
                 let selfBase = r * self.width + columns.lowerBound
                 let selfEnd = r * self.width + columns.upperBound
-                values[base..<(base + width)] = data[selfBase..<selfEnd]
+                //                values[base..<(base + width)] = data[selfBase..<selfEnd]
+                values.replaceSubrange(base..<(base+width), with: data[selfBase..<selfEnd])
             }
             return Matrix(rowMajorData: values, width: width)
         }
@@ -40,7 +41,8 @@ public extension Matrix {
                 let base = (r - rows.lowerBound) * width
                 let selfBase = r * self.width + columns.lowerBound
                 let selfEnd = r * self.width + columns.upperBound
-                data[selfBase..<selfEnd] = subMatrix.data[base..<(base + width)]
+                //                data[selfBase..<selfEnd] = subMatrix.data[base..<(base + width)]
+                data.replaceSubrange(selfBase..<selfEnd, with: subMatrix.data[base..<(base + width)])
             }
         }
     }
@@ -69,22 +71,7 @@ public extension Matrix {
         }
     }
     
-    public subscript(rows: ClosedRange<Int>, column: Int) -> Matrix {
-        get {
-            return self[Range(rows), column..<(column + 1)]
-        }
-        set(m) {
-            self[Range(rows), column..<(column + 1)] = m
-        }
-    }
-    public subscript(rows: Range<Int>, column: Int) -> Matrix {
-        get {
-            return self[rows, column..<(column + 1)]
-        }
-        set(m) {
-            self[rows, column..<(column + 1)] = m
-        }
-    }
+    
     
     public subscript(row: Int, columns: ClosedRange<Int>) -> Matrix {
         get {
@@ -118,18 +105,35 @@ public extension Matrix {
         get {
             precondition(width == 1 || height == 1)
             if width == 1 {
-                return self[i, 0]
+                return Matrix(rowMajorData: Array(data[i]), width: 1)
             } else {
-                return self[0, i]
+                return Matrix(rowMajorData: Array(data[i]), width: i.count)
             }
         }
         set(m) {
-            precondition(width == 1 || height == 1)
-            if width == 1 {
-                self[i, 0] = m
-            } else {
-                self[0, i] = m
-            }
+            precondition((width == 1 && m.width == 1) || (height == 1 && m.height == 1))
+            data.replaceSubrange(i, with: m.data)
         }
     }
+    
+    
+    public subscript(rows: Range<Int>, column: Int) -> Matrix {
+        get {
+            return self[rows, column..<(column + 1)]
+        }
+        set(m) {
+            self[rows, column..<(column + 1)] = m
+        }
+    }
+    
+    
+    public subscript(rows: ClosedRange<Int>, column: Int) -> Matrix {
+        get {
+            return self[Range(rows), column]
+        }
+        set(m) {
+            self[Range(rows), column] = m
+        }
+    }
+    
 }

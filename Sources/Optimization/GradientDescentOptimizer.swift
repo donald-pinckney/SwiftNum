@@ -13,11 +13,13 @@ public struct GradientDescentOptimizer {
     let learningRate: Double
     let precision: Double
     let maxIters: UInt
+    let debug: Bool
     
-    public init(learningRate: Double, precision: Double, maxIterations: UInt = UInt.max) {
+    public init(debug: Bool = true, learningRate: Double, precision: Double, maxIterations: UInt = UInt.max) {
         self.learningRate = learningRate
         self.precision = precision
         maxIters = maxIterations
+        self.debug = debug
     }
     
     public func optimize(_ toOptimize: Optimizable) -> (costHistory: [Double], parameters: Matrix) {
@@ -34,6 +36,9 @@ public struct GradientDescentOptimizer {
         while outOfPrecision && iter < maxIters {
             P_old = P_new
             let (cost, deriv) = toOptimize.costFunction(P_old)
+            if debug {
+                print("Iteration \(iter) | Cost: \(cost)")
+            }
             costHistory.append(cost)
             
             P_new -= learningRate * deriv
