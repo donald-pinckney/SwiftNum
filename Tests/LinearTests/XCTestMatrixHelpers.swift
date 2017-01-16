@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Linear
 
 public func XCTAssertEqualWithAccuracy(_ X: Matrix, _ Y: Matrix, accuracy: Double, _ message: String = "") {
     XCTAssertEqual(X.width, Y.width)
@@ -18,3 +19,4 @@ public func XCTAssertEqualWithAccuracy(_ X: Matrix, _ Y: Matrix, accuracy: Doubl
         }
     }
 }
+    
