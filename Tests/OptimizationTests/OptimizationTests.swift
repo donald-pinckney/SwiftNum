@@ -44,7 +44,9 @@ class OptimizationTests: XCTestCase {
         let (history, xMin) = gradientDescent.optimize(wrapper2)
         let yMin = history.last!
         
-//        XCTAssertEqual(xMin, expectedXmin2, accuracy: 0.001)
+        XCTAssertEqual(xMin[0], expectedXmin2[0], accuracy: 0.001)
+        XCTAssertEqual(xMin[1], expectedXmin2[1], accuracy: 0.001)
+        
         XCTAssertEqual(yMin, expectedYmin2, accuracy: 0.001)
     }
     
@@ -60,7 +62,9 @@ class OptimizationTests: XCTestCase {
         let (history, xMin) = conjugateGradient.optimize(wrapper2)
         let yMin = history.last!
         
-//        XCTAssertEqual(xMin, expectedXmin2, accuracy: 0.001)
+        XCTAssertEqual(xMin[0], expectedXmin2[0], accuracy: 0.001)
+        XCTAssertEqual(xMin[1], expectedXmin2[1], accuracy: 0.001)
+
         XCTAssertEqual(yMin, expectedYmin2, accuracy: 0.001)
     }
     
