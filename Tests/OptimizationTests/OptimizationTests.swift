@@ -36,32 +36,36 @@ class OptimizationTests: XCTestCase {
         let (history, xMin) = gradientDescent.optimize(wrapper)
         let yMin = history.last!
         
-        XCTAssertEqualWithAccuracy(xMin[0], expectedXmin, accuracy: 0.001)
-        XCTAssertEqualWithAccuracy(yMin, expectedYmin, accuracy: 0.001)
+        XCTAssertEqual(xMin[0], expectedXmin, accuracy: 0.001)
+        XCTAssertEqual(yMin, expectedYmin, accuracy: 0.001)
     }
     
     func testGradientDescentOptimizerMultiVariable() {
         let (history, xMin) = gradientDescent.optimize(wrapper2)
         let yMin = history.last!
         
-        XCTAssertEqualWithAccuracy(xMin, expectedXmin2, accuracy: 0.001)
-        XCTAssertEqualWithAccuracy(yMin, expectedYmin2, accuracy: 0.001)
+        XCTAssertEqual(xMin[0], expectedXmin2[0], accuracy: 0.001)
+        XCTAssertEqual(xMin[1], expectedXmin2[1], accuracy: 0.001)
+        
+        XCTAssertEqual(yMin, expectedYmin2, accuracy: 0.001)
     }
     
     func testConjugateGradientOptimizerSingleVariable() {
         let (history, xMin) = conjugateGradient.optimize(wrapper)
         let yMin = history.last!
         
-        XCTAssertEqualWithAccuracy(xMin[0], expectedXmin, accuracy: 0.001)
-        XCTAssertEqualWithAccuracy(yMin, expectedYmin, accuracy: 0.001)
+        XCTAssertEqual(xMin[0], expectedXmin, accuracy: 0.001)
+        XCTAssertEqual(yMin, expectedYmin, accuracy: 0.001)
     }
     
     func testConjugateGradientOptimizerMultiVariable() {
         let (history, xMin) = conjugateGradient.optimize(wrapper2)
         let yMin = history.last!
         
-        XCTAssertEqualWithAccuracy(xMin, expectedXmin2, accuracy: 0.001)
-        XCTAssertEqualWithAccuracy(yMin, expectedYmin2, accuracy: 0.001)
+        XCTAssertEqual(xMin[0], expectedXmin2[0], accuracy: 0.001)
+        XCTAssertEqual(xMin[1], expectedXmin2[1], accuracy: 0.001)
+
+        XCTAssertEqual(yMin, expectedYmin2, accuracy: 0.001)
     }
     
     

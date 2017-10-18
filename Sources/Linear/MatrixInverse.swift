@@ -14,21 +14,25 @@ public extension Matrix {
             return nil
         }
         
-        var N = __CLPK_integer(width)
+        var m = __CLPK_integer(width)
+        var n = m
+        var lda = m
         var error: __CLPK_integer = 0
         
         var mat = self.data
-        var pivot = [__CLPK_integer](repeating: 0, count: Int(N))
-        var workspace = [Double](repeating: 0, count: Int(N))
+        var pivot = [__CLPK_integer](repeating: 0, count: Int(m))
+        var workspace = [Double](repeating: 0, count: Int(m))
         
-        dgetrf_(&N, &N, &mat, &N, &pivot, &error)
+        dgetrf_(&m, &n, &mat, &lda, &pivot, &error)
         
         var res: Matrix? = nil
         if error == 0 {
-            dgetri_(&N, &mat, &N, &pivot, &workspace, &N, &error)
-            res = Matrix(rowMajorData: mat, width: Int(N))
+            var w = __CLPK_integer(width)
+            dgetri_(&n, &mat, &lda, &pivot, &workspace, &w, &error)
+            res = Matrix(rowMajorData: mat, width: Int(__CLPK_integer(width)))
         }
         
         return res
     }
 }
+
