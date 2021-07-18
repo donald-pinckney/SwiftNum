@@ -6,10 +6,10 @@ import PackageDescription
 let package = Package(
     name: "SwiftNum",
     targets: [
-    	Target(name: "Linear", dependencies: []),
-    	Target(name: "Plotting", dependencies: []),
-    	Target(name: "SignalProcessing", dependencies: []),
-    	Target(name: "Optimization", dependencies: ["Linear"]),
-        Target(name: "GeneralMath", dependencies: [])
+    	.target(name: "Linear", dependencies: []),
+    	.target(name: "Plotting", dependencies: []),
+    	.target(name: "SignalProcessing", dependencies: []),
+    	.target(name: "Optimization", dependencies: ["Linear"]),
+        .target(name: "GeneralMath", dependencies: [])
     ]
 )
