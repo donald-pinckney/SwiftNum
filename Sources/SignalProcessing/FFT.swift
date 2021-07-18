@@ -44,7 +44,7 @@ func fft(_ inputArray: [Double]) -> [(magnitude: Double, phase: Double)] {
     
     var outputCombined = [Double](repeating: 0.0, count: length)
     cblas_dcopy(Int32(length / 2), outputReal, 1, &outputCombined, 2)
-    cblas_dcopy(Int32(length / 2), outputImag, 1, &outputCombined + 1, 2)
+//    cblas_dcopy(Int32(length / 2), outputImag, 1, &outputCombined + 1, 2)
     
     var normFactor = 1.0 / Double(length)
     vDSP_vsmulD(outputCombined, vDSP_Stride(1), &normFactor, &outputCombined, vDSP_Stride(1), vDSP_Length(length))

@@ -14,7 +14,7 @@ extension Matrix: CustomStringConvertible {
         for r in 0..<height {
             for c in 0..<width {
                 let num = String(format: "%.4g", self[r, c])
-                maxWidth = max(maxWidth, num.characters.count)
+                maxWidth = max(maxWidth, num.count)
             }
         }
         
@@ -26,7 +26,7 @@ extension Matrix: CustomStringConvertible {
                 let num = String(format: "%.4g", self[r, c])
                 final += num
                 if c != width - 1 {
-                    final += repeatElement(" ", count: maxWidth - num.characters.count + 2).reduce("", +)
+                    final += repeatElement(" ", count: maxWidth - num.count + 2).reduce("", +)
                 }
             }
             
