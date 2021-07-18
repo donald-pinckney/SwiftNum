@@ -10,6 +10,13 @@ let package = Package(
     	.target(name: "Plotting", dependencies: []),
     	.target(name: "SignalProcessing", dependencies: []),
     	.target(name: "Optimization", dependencies: ["Linear"]),
-        .target(name: "GeneralMath", dependencies: [])
+        .target(name: "GeneralMath", dependencies: []),
+        .testTarget(
+            name: "LinearTests",
+            dependencies: ["Linear"]),
+        .testTarget(
+            name: "OptimizationTests",
+            dependencies: ["Optimization"]),
     ]
+
 )

@@ -37,14 +37,14 @@ public func random(_ n: Int) -> Int {
 */
 
 public extension Array {
-    public mutating func shuffle() {
+    mutating func shuffle() {
         for i in stride(from: count - 1, through: 1, by: -1) {
             let j = random(i + 1)
             (self[i], self[j]) = (self[j], self[i])
         }
     }
     
-    public func shuffled() -> Array {
+    func shuffled() -> Array {
         var a = self
         a.shuffle()
         return a
@@ -52,14 +52,14 @@ public extension Array {
 }
 
 public extension CountableRange {
-    public func shuffled() -> [Bound] {
+    func shuffled() -> [Bound] {
         let a = Array(self)
         return a.shuffled()
     }
 }
 
 public extension CountableClosedRange {
-    public func shuffled() -> [Bound] {
+    func shuffled() -> [Bound] {
         let a = Array(self)
         return a.shuffled()
     }

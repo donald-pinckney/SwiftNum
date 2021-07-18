@@ -7,7 +7,7 @@
 //
 
 public extension Matrix {
-    public subscript(row: Int, column: Int) -> Double {
+    subscript(row: Int, column: Int) -> Double {
         get {
             return data[width*row + column]
         }
@@ -16,7 +16,7 @@ public extension Matrix {
         }
     }
     
-    public subscript(rows: Range<Int>, columns: Range<Int>) -> Matrix {
+    subscript(rows: Range<Int>, columns: Range<Int>) -> Matrix {
         get {
             let width = columns.count
             let height = rows.count
@@ -46,7 +46,7 @@ public extension Matrix {
             }
         }
     }
-    public subscript(rows: ClosedRange<Int>, columns: Range<Int>) -> Matrix {
+    subscript(rows: ClosedRange<Int>, columns: Range<Int>) -> Matrix {
         get {
             return self[Range(rows), columns]
         }
@@ -54,7 +54,7 @@ public extension Matrix {
             self[Range(rows), columns] = m
         }
     }
-    public subscript(rows: Range<Int>, columns: ClosedRange<Int>) -> Matrix {
+    subscript(rows: Range<Int>, columns: ClosedRange<Int>) -> Matrix {
         get {
             return self[rows, Range(columns)]
         }
@@ -62,7 +62,7 @@ public extension Matrix {
             self[rows, Range(columns)] = m
         }
     }
-    public subscript(rows: ClosedRange<Int>, columns: ClosedRange<Int>) -> Matrix {
+    subscript(rows: ClosedRange<Int>, columns: ClosedRange<Int>) -> Matrix {
         get {
             return self[Range(rows), Range(columns)]
         }
@@ -73,7 +73,7 @@ public extension Matrix {
     
     
     
-    public subscript(row: Int, columns: ClosedRange<Int>) -> Matrix {
+    subscript(row: Int, columns: ClosedRange<Int>) -> Matrix {
         get {
             return self[row..<(row + 1), Range(columns)]
         }
@@ -81,7 +81,7 @@ public extension Matrix {
             self[row..<(row + 1), Range(columns)] = m
         }
     }
-    public subscript(row: Int, columns: Range<Int>) -> Matrix {
+    subscript(row: Int, columns: Range<Int>) -> Matrix {
         get {
             return self[row..<(row + 1), columns]
         }
@@ -90,7 +90,7 @@ public extension Matrix {
         }
     }
     
-    public subscript(rows: Range<Int>, column: Int) -> Matrix {
+    subscript(rows: Range<Int>, column: Int) -> Matrix {
         get {
             return self[rows, column..<(column + 1)]
         }
@@ -100,7 +100,7 @@ public extension Matrix {
     }
     
     
-    public subscript(rows: ClosedRange<Int>, column: Int) -> Matrix {
+    subscript(rows: ClosedRange<Int>, column: Int) -> Matrix {
         get {
             return self[Range(rows), column]
         }
@@ -109,7 +109,7 @@ public extension Matrix {
         }
     }
     
-    public subscript(rows: Range<Int>, columns: [Int]) -> Matrix {
+    subscript(rows: Range<Int>, columns: [Int]) -> Matrix {
         get {
             var cols: [Matrix] = []
             for c in columns {
@@ -118,20 +118,20 @@ public extension Matrix {
             return Matrix.horizontalConcatenate(cols)
         }    }
     
-    public subscript(rows: ClosedRange<Int>, columns: [Int]) -> Matrix {
+    subscript(rows: ClosedRange<Int>, columns: [Int]) -> Matrix {
         get {
             return self[Range(rows), columns]
         }
     }
     
-    public subscript(row: Int, columns: [Int]) -> Matrix {
+    subscript(row: Int, columns: [Int]) -> Matrix {
         get {
             return self[row..<(row + 1), columns]
         }
     }
     
     
-    public subscript(rows: [Int], columns: Range<Int>) -> Matrix {
+    subscript(rows: [Int], columns: Range<Int>) -> Matrix {
         get {
             var rs: [Matrix] = []
             for r in rows {
@@ -141,19 +141,19 @@ public extension Matrix {
         }
     }
     
-    public subscript(rows: [Int], columns: ClosedRange<Int>) -> Matrix {
+    subscript(rows: [Int], columns: ClosedRange<Int>) -> Matrix {
         get {
             return self[rows, Range(columns)]
         }
     }
     
-    public subscript(rows: [Int], column: Int) -> Matrix {
+    subscript(rows: [Int], column: Int) -> Matrix {
         get {
             return self[rows, column..<(column+1)]
         }
     }
     
-    public subscript(rows: [Int], columns: [Int]) -> Matrix {
+    subscript(rows: [Int], columns: [Int]) -> Matrix {
         get {
             var data: [Double] = []
             for r in rows {
@@ -166,7 +166,7 @@ public extension Matrix {
     }
     
     // Only valid for row or column matrices
-    public subscript(i: Int) -> Double {
+    subscript(i: Int) -> Double {
         get {
             precondition(width == 1 || height == 1)
             return self.data[i]
@@ -176,7 +176,7 @@ public extension Matrix {
             self.data[i] = m
         }
     }
-    public subscript(i: Range<Int>) -> Matrix {
+    subscript(i: Range<Int>) -> Matrix {
         get {
             precondition(width == 1 || height == 1)
             if width == 1 {
